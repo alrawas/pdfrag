@@ -21,8 +21,8 @@ public class ReferenceDocsLoader {
     private final VectorStore vectorStore;
     @Value("classpath:/docs/spring-boot-reference-329.pdf")
     private Resource pdfResource;
-    @Value("${spring.ai.openai.api-key}")
-    private String openaiApiKey;
+    // @Value("${spring.ai.openai.api-key}")
+    // private String openaiApiKey;
 
     public ReferenceDocsLoader(JdbcClient jdbcClient, VectorStore vectorStore) {
         this.jdbcClient = jdbcClient;
@@ -31,7 +31,7 @@ public class ReferenceDocsLoader {
 
     @PostConstruct
     public void init() {
-        log.info("openai api key: {}", openaiApiKey);
+        // log.info("openai api key: {}", openaiApiKey);
         Integer count = jdbcClient.sql("select count(*) from vector_store")
                 .query(Integer.class)
                 .single();
